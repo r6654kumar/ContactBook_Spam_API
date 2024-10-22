@@ -1,0 +1,10 @@
+import express from 'express';
+import { register, login, addContact, reportSpam, search } from '../controllers/userController.js';
+import { authenticate } from '../middlewares/auth.js';
+const router = express.Router();
+router.post('/register', register);
+router.post('/login', login);
+router.post('/contacts', authenticate, addContact);
+router.post('/spam', authenticate, reportSpam);
+router.get('/search', authenticate, search);
+export default router;
